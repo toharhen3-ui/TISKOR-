@@ -16,8 +16,16 @@ io.on("connection", (socket) => {
   socket.on("send_message", (data) => {
     socket.broadcast.emit("receive_message", data);
   });
-});
 
+  socket.on("voice-offer", (offer) => {
+    socket.broadcast.emit("voice-offer", offer);
+  });
+
+  socket.on("voice-answer", (answer) => {
+    socket.broadcast.emit("voice-answer", answer);
+  });
+
+});
 server.listen(3000, () => {
   console.log("Server running on port 3000");
 });
